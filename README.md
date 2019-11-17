@@ -1,3 +1,13 @@
+dissect配置pattern
+===========================
+```java
+dissect.log.pattern: "{'group.bison.test.logsystem.collect.LoggerNames$SystemLoggerName':
+      '[
+          \"application:%{logName} %{eventId} %{logOrigin:SpringApplicationListener}\"
+      ]'
+    }"
+```
+
 jlogstash
 ===========================
 logstash的java实现，可以自己写日志解析、输入和输出了。项目借鉴**GITHUB**代码库：[jlogstash](https://github.com/DTStack/jlogstash),[hangout](https://github.com/childe/hangout)
@@ -27,7 +37,7 @@ inputs:
         topic:
           some-topic
         groupId:
-          som-groupId
+          some-groupId
         bootstrapServers:
           0.0.0.0：9092
 
