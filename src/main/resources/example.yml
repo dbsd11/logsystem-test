@@ -1,0 +1,27 @@
+inputs:
+    - Kafka10:
+        codec: json
+        encoding: UTF8 # defaut UTF8
+        topic:
+          some-topic
+        groupId:
+          som-groupId
+        bootstrapServers:
+          0.0.0.0：9092
+
+        consumerSettings:
+          group.id: some-groupId
+          auto.commit.interval.ms: "1000"
+          
+filters:
+   - Add:
+        fields: {"ip":"%{ip}%"}
+
+outputs:
+   - Jdbc:
+        driverJarPath: ''
+        driverClass: 'com.mysql.jdbc.Driver'
+        connectionString: 'jdbc:mysql://0.0.0.0:3306/test1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull'
+        statement:
+            - 'insert into testi(id) values("?") '
+            - '%{timeStamp}'
