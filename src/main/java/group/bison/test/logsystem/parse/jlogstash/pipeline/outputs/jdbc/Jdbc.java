@@ -99,16 +99,21 @@ public class Jdbc extends BaseOutput {
         druidDataSource.setConnectionInitSqls(Collections.singletonList("SELECT 1"));
         druidDataSource.setConnectProperties(connectionProperties);
 
-        druidDataSource.setTestOnBorrow(true);
-        druidDataSource.setMaxWait(3000);
-        druidDataSource.setUseUnfairLock(true);
-        druidDataSource.setKeepAlive(true);
-        druidDataSource.setEnable(true);
-        druidDataSource.setInitialSize(1);
-        druidDataSource.setAsyncInit(true);
+		druidDataSource.setTestOnBorrow(false);
+		druidDataSource.setTestOnReturn(false);
+		druidDataSource.setTestWhileIdle(true);
+		druidDataSource.setTimeBetweenEvictionRunsMillis(600000);
+		druidDataSource.setMaxWait(30000L);
+		druidDataSource.setMaxActive(300);
+		druidDataSource.setUseUnfairLock(true);
+		druidDataSource.setKeepAlive(true);
+		druidDataSource.setEnable(true);
+		druidDataSource.setInitialSize(4);
+		druidDataSource.setAsyncInit(true);
 
-        druidDataSource.setUseGlobalDataSourceStat(true);
-
+		druidDataSource.setUseGlobalDataSourceStat(true);
+		druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(20);
+        
         try {
             druidDataSource.init();
             prepared.set(true);

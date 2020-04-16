@@ -50,6 +50,7 @@ public class YamlConfig implements Config{
     static {
         objectMapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);//设置可用单引号
         objectMapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);//设置字段可以不
+		objectMapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true); //设置允许转义字符
     }
 
     @Override
